@@ -18,10 +18,10 @@
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
     <!-- URL canonica para esta página -->
-    <meta property="og:url" content="https://nabio.link/">
+    <meta property="og:url" content="https://regisbastos.github.io/site/">
     <!-- Metadados do Twitter (cards) -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="MC Regis - Novo Single Disponível Agora">
+    <meta name="twitter:title" content="Mc Regis - Novo Single Disponível Agora">
     <meta name="twitter:description" content="Ouça o novo single do MC Regis e assista ao clipe no site oficial.">
     <meta name="twitter:image" content="https://i.ibb.co/rGbY0pGw/man.png">
     <!-- Algumas plataformas usam largura/altura com prefixo twitter: -->
@@ -76,25 +76,25 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="#">Vídeos</a></li>
-                <li><a href="#">Músicas</a></li>
+                <li><a href="https://open.spotify.com/intl-pt/artist/1YrxodAk5sREGDhH6ra7Uy">Músicas</a></li>
                 <li><a href="contatos.html">Contatos</a></li>
             </ul>
             <div class="nav-extras">
-                <a href="#" aria-label="Spotify" class="social-link"><i class="fa-brands fa-spotify"></i></a>
-                <a href="#" aria-label="Deezer" class="social-link"><i class="fa-brands fa-deezer"></i></a>
-                <a href="#" aria-label="YouTube Music" class="social-link"><i class="fa-brands fa-youtube"></i></a>
-                <a href="#" aria-label="TikTok" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://open.spotify.com/intl-pt/artist/1YrxodAk5sREGDhH6ra7Uy" aria-label="Spotify" class="social-link"><i class="fa-brands fa-spotify"></i></a>
+                <a href="https://www.deezer.com/br/artist/366782762" aria-label="Deezer" class="social-link"><i class="fa-brands fa-deezer"></i></a>
+                <a href="https://www.youtube.com/channel/UCW7rY4VhsQx65yCYFdq6MGg" aria-label="YouTube Music" class="social-link"><i class="fa-brands fa-youtube"></i></a>
+                <a href="https://www.tiktok.com/@regisbastos9" aria-label="TikTok" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
                 <!-- Use the standard Twitter icon instead of fa-x-twitter to ensure the icon displays correctly on all devices -->
-                <a href="#" aria-label="Twitter" class="social-link"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#" aria-label="Instagram" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://x.com/@xshinabr" aria-label="Twitter" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                <a href="https://www.instagram.com/mcregis1/" aria-label="Instagram" class="social-link"><i class="fa-brands fa-instagram"></i></a>
 
                 <!-- Kwai icon with link (update href to your Kwai profile if available) -->
-                <a href="#" aria-label="Kwai" class="social-link kwai-link"><img src="assets/kwai.svg" alt="Kwai" class="kwai-icon"></a>
+                <a href="https://www.kwai.com/@mc-regis" aria-label="Kwai" class="social-link kwai-link"><img src="assets/kwai.svg" alt="Kwai" class="kwai-icon"></a>
 
                 <!-- Link para contato por email -->
                 <a href="mailto:mcregis.artist@gmail.com" aria-label="Email" class="social-link"><i class="fa-solid fa-envelope"></i></a>
 
-                <a href="#" id="shareBtn" class="share-btn" aria-label="Compartilhar"><i class="fa-solid fa-share"></i></a>
+                <a href="https://regisbastos.github.io/site/" id="shareBtn" class="share-btn" aria-label="Compartilhar"><i class="fa-solid fa-share"></i></a>
             </div>
         <!-- Mobile menu icon (hamburger).  Visible only on small screens. -->
         <div class="nav-icon" aria-label="Abrir menu">
@@ -116,8 +116,8 @@
             <h1>MC Regis</h1>
             <p>Novo single disponível agora</p>
             <div class="cta">
-                <a href="#" class="btn listen">Ouça agora</a>
-                <a href="#" class="btn watch">Assista clipe</a>
+                <a href="https://open.spotify.com/intl-pt/artist/1YrxodAk5sREGDhH6ra7Uy" class="btn listen">Ouça agora</a>
+                <a href="#" class="btn watch">Assista clipe Embreve</a>
             </div>
 
             <!-- Container where the Spotify iFrame API will render the embedded playlist.  The
@@ -137,7 +137,7 @@
       communicates the copyright notice.
     -->
     <footer class="site-footer">
-        <p>© 2026 MC Regis • Todos os direitos reservados.</p>
+        <p>© 2026 Mc Regis • Todos os direitos reservados.</p>
     </footer>
 
     <!-- Newsletter subscription widget.  A floating button on the left opens a small form
@@ -196,8 +196,8 @@
             // playback begins when the user presses the play button.
             window.onSpotifyIframeApiReady = (IFrameAPI) => {
                 const playlists = [
-                    '', // Top 50 Brasil
-                    '', // Today\'s Top Hits
+                    'spotify:album:0Pg3HkZw9E5KkdG0b5DAqG', // Top 50 Brasil
+                    'spotify:album:1g9XW7zbLy3eIsEYFMYf1t', // Today\'s Top Hits
                     ''  // Brazilian Funk
                 ];
                 // Pick a random playlist URI
