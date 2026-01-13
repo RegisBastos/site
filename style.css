@@ -1,0 +1,777 @@
+/* Global resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    /* Use a plain dark background to blend seamlessly with the hero section. */
+    background: #0a0814;
+    color: #fff;
+    line-height: 1.5;
+    overflow-x: hidden;
+    /* Allow vertical scrolling so wrapped navigation items remain accessible on narrow screens */
+    overflow-y: auto;
+}
+
+/* Navigation bar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    z-index: 1000;
+    /* Increase the minimum height of the navigation bar for better visibility */
+    min-height: 70px;
+}
+
+/* Left grouping of logo and nav links is no longer used after refactoring
+   the navigation bar layout. */
+
+.navbar .container {
+    /* Arrange the navigation bar into three columns: logo | nav links | icons */
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    padding: 16px 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.navbar .logo {
+    font-weight: 800;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    /* Prevent the site name from breaking into multiple lines on small screens. */
+    white-space: nowrap;
+}
+
+/* Navigation links container */
+/* Navigation links list on the left side of the nav bar */
+.nav-links {
+    /* Display the navigation links as a centered flex row; wrap on small screens */
+    display: flex;
+    list-style: none;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+/* Add right margin to each navigation item except the extras container */
+/* Remove right margin on individual navigation items because anchor padding handles spacing */
+/* Reset margins on list items; spacing is handled by the gap on .nav-links */
+.nav-links > li {
+    margin: 0;
+}
+
+/* Extra container inside navigation bar to align social icons and share button to the far right */
+/* Extra icons container on the right of the navigation bar */
+.nav-extras {
+    /* Place the icons in the right column of the grid and align them to the end */
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.nav-links a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+    /* Horizontal padding to visually separate navigation links */
+    padding: 0 16px;
+}
+
+.nav-links a:hover {
+    color: #e74c3c;
+}
+
+.nav-icon {
+    /* Hidden by default; becomes visible on small screens */
+    display: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* Hero section */
+#hero {
+    /* Use a concert crowd photo as the backdrop */
+    position: relative;
+    /* Fill the viewport vertically. The footer will overlay on top without increasing height */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 100px;
+    overflow: hidden;
+    /* Background image and overlay for contrast */
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Audio control button for the Spotify player */
+.audio-control {
+    /* Position the button relative to the normal flow so it sits above the
+       heading.  A margin is applied below to separate it from the text. */
+    position: relative;
+    margin-bottom: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(4px);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+.audio-control:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+/* Adjust the size of the icon inside the play/pause button */
+.audio-control i {
+    font-size: 24px;
+}
+
+/* Hidden container for the Spotify embed.  We give the iframe minimal
+   dimensions and hide it off-screen while still allowing the API to
+   function correctly. */
+.spotify-player {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Hide any Spotify iFrame that gets inserted into the player container.  We
+   explicitly set the dimensions and visibility to zero so that the full
+   player UI never appears on the page.  The music will still play in the
+   background under the control of our custom button. */
+.spotify-player iframe {
+    width: 0 !important;
+    height: 0 !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+/* Newsletter subscription widget
+   Positioned fixed on the left side of the viewport, this widget contains
+   a floating icon and a hidden form that appears when the icon is clicked. */
+/*
+ * Position the newsletter widget near the bottom of the page and tuck it
+ * partially off‑screen when closed.  On mobile and desktop it stays
+ * fixed so that it remains visible while scrolling.  The left offset
+ * hides half of the envelope icon until the user interacts with it.  We
+ * animate the horizontal movement with a transition so it smoothly
+ * slides into view on hover or when the widget is opened via the
+ * JavaScript toggle.
+ */
+.newsletter-widget {
+    position: fixed;
+    /* Place the widget even closer to the bottom of the viewport.  A
+       smaller percentage lowers it further, keeping it just above the
+       fixed footer while making it less obtrusive. */
+    bottom: 5vh;
+    /* Hide half of the icon by positioning the widget partially off the
+       left edge of the viewport.  The icon is 48px wide, so -24px
+       hides roughly half of it. */
+    left: -24px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Smoothly slide the widget in and out of view */
+    transition: left 0.3s ease;
+}
+
+/* When the user hovers over the widget or it’s toggled open via JS,
+   bring it fully into view.  Applying this both on hover and the
+   `.open` class ensures accessibility on devices where hover is
+   unavailable (touch screens). */
+.newsletter-widget:hover,
+.newsletter-widget.open {
+    left: 0;
+}
+
+/* The floating envelope icon.  It sits partially offscreen until hovered or clicked. */
+.newsletter-icon {
+    background: #d4112a;
+    color: #ffffff;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.newsletter-icon:hover {
+    background: #a70d23;
+}
+.newsletter-icon i {
+    font-size: 20px;
+}
+
+/* The newsletter form slides out from behind the icon.  Hidden by default. */
+.newsletter-form {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 0 8px 8px 0;
+    margin-top: 4px;
+    width: 220px;
+    max-width: 80vw;
+}
+.newsletter-form input[type=email] {
+    padding: 10px;
+    border-radius: 4px;
+    border: none;
+    width: 100%;
+}
+.newsletter-form button[type=submit] {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background: #d4112a;
+    color: #ffffff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.newsletter-form button[type=submit]:hover {
+    background: #a70d23;
+}
+
+/* When the widget has the class `.open` (set via JavaScript), display the form. */
+.newsletter-widget.open .newsletter-form {
+    display: flex;
+}
+
+/* Visitor counter widget
+   A floating eye icon displays the number of page visits.  It sits on the
+   left side of the viewport above the newsletter widget.  The widget is
+   tucked partially off‑screen until hovered or tapped, then it slides
+   into view.  The count is hidden by default and revealed when the
+   widget has the `.open` class (toggled via JavaScript).  We reuse the
+   same colour palette as the newsletter icon to maintain consistency. */
+.visitor-widget {
+    position: fixed;
+    /* Position the visitor widget higher up the viewport so it does not
+       collide with the newsletter widget, which sits closer to the
+       bottom.  Adjust this value as needed if more floating widgets are
+       added. */
+    bottom: 20vh;
+    /* Hide roughly half of the icon by placing the widget slightly off
+       the screen to the left.  The icon is 48px wide, so -24px hides
+       half of it. */
+    left: -24px;
+    z-index: 999;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    transition: left 0.3s ease;
+}
+.visitor-widget:hover,
+.visitor-widget.open {
+    left: 0;
+}
+.visitor-icon {
+    background: #d4112a;
+    color: #ffffff;
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+.visitor-icon:hover {
+    background: #a70d23;
+}
+.visitor-icon i {
+    font-size: 20px;
+}
+.visitor-count {
+    display: none;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 0 8px 8px 0;
+    margin-top: 4px;
+    white-space: nowrap;
+    font-size: 14px;
+    color: #ffffff;
+}
+.visitor-widget.open .visitor-count {
+    display: block;
+}
+
+/* Ensure the visitor counter gif scales nicely within the widget.  The gif
+   is a digital-style counter hosted locally in assets/visitor.gif.  By
+   setting the width to 100%, it expands to fill the visitor-count container
+   while maintaining its aspect ratio. */
+.visitor-count img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/*
+ * Success and error messages for the newsletter form.  When the form is
+ * submitted via AJAX, we replace its contents with either a success or
+ * error notification.  These styles ensure the messages match the
+ * visual identity of the widget and remain legible.
+ */
+.newsletter-success,
+.newsletter-error {
+    padding: 16px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 4px;
+    width: 220px;
+    max-width: 80vw;
+    font-size: 14px;
+    text-align: left;
+    line-height: 1.4;
+    color: #ffffff;
+}
+.newsletter-success {
+    background: rgba(46, 204, 113, 0.9);
+}
+.newsletter-error {
+    background: rgba(231, 76, 60, 0.9);
+}
+
+.hero-content h1 {
+    font-size: 64px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    margin-top: 12px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.cta {
+    margin-top: 32px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.btn.listen {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+.btn.watch {
+    background: #d4112a;
+    color: #ffffff;
+    border: 2px solid #d4112a;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* Hero image */
+.hero-image {
+    position: absolute;
+    bottom: 0;
+    /* Shift the image inward by roughly one centimetre so it isn't flush with
+       the edge of the hero section.  This leaves a small gap while preserving
+       its alignment relative to the text. */
+    right: 1cm;
+    width: 45%;
+    max-width: 600px;
+    pointer-events: none;
+    /* Place the artist image above the background but below the text */
+    z-index: 0;
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Ensure hero text sits above the artist image */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    /* Arrange the hero content in a column so that the play/pause button,
+       heading, subheading and CTA stack vertically and stay centered. */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    /* Reduce the hero title size on smaller screens */
+    .hero-content h1 {
+        font-size: 48px;
+    }
+    /* Adjust the artist image size and position for narrow viewports */
+    .hero-image {
+        width: 70%;
+        right: calc(-10% + 1cm);
+    }
+    /* On small screens use a relative container so the dropdown menu can be
+       positioned relative to the bar.  Prevent wrapping of the container's
+       children so that the logo, icons and hamburger stay on one row. */
+    .navbar .container {
+        position: relative;
+        flex-wrap: nowrap;
+    }
+    /* Hide the navigation links by default and present them as a vertical
+       dropdown menu below the navigation bar.  When the `open` class is
+       applied via JavaScript, the menu becomes visible. */
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 12px 20px;
+        gap: 12px;
+        z-index: 999;
+    }
+    .nav-links.open {
+        display: flex !important;
+    }
+    /* Show the hamburger icon on small screens.  A margin-left pushes it
+       slightly away from the preceding icons */
+    .nav-icon {
+        display: block;
+        margin-left: 16px;
+        font-size: 24px;
+    }
+
+    /* When the mobile menu is closed, hide the site logo and remove the
+       background from the navigation bar so only the hamburger icon
+       remains visible.  When the menu is open (indicated by the
+       .menu-open class on .navbar), restore the logo and the
+       semi-transparent background. */
+    .navbar:not(.menu-open) {
+        background: transparent;
+        border-bottom: none;
+    }
+    .navbar:not(.menu-open) .logo {
+        display: none;
+    }
+    .navbar.menu-open .logo {
+        display: block;
+    }
+    .navbar.menu-open {
+        background: rgba(0, 0, 0, 0.4);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* Hide the social icons on small screens by default.  When the
+       navigation menu is opened via JavaScript, a class (.open-icons)
+       will be added to .nav-extras to restore their visibility. */
+    .nav-extras {
+        display: none;
+    }
+    .nav-extras.open-icons {
+        display: flex;
+    }
+
+    /* On narrow screens move hero content towards the top instead of centering it.
+       The default hero uses justify-content:center which vertically centers the
+       title and buttons over the artist image.  This causes the text to sit on
+       top of the head in very short viewports.  Here we override the flex
+       alignment so the content starts near the top of the hero.  We also add
+       extra padding to provide breathing room below the fixed navbar. */
+    #hero {
+        justify-content: flex-start;
+        /* Adjust the top padding so the hero content sits slightly lower (about
+           half a centimeter in visual terms).  Increasing the padding
+           reintroduces some space above the title and buttons while still
+           keeping them clear of the artist image. */
+        padding-top: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 36px;
+    }
+    .btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    /* On very narrow screens, reflow the navigation bar so that the site name
+       stays on a single line and the social icons/hamburger are presented
+       beneath it.  We use a 2×2 grid for the navigation: the first row
+       contains only the logo, while the second row holds the social icons and
+       the hamburger button.  This avoids breaking the logo into two lines
+       when there isn't enough horizontal space. */
+    /* On narrow screens, place the logo on its own row and the social icons
+       (including the email, Kwai and share buttons) on a second row.  The
+       navigation icon (hamburger) sits to the right of the social icons. */
+    .navbar .container {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        align-items: center;
+    }
+    .navbar .logo {
+        grid-column: 1 / -1;
+        margin-bottom: 6px;
+    }
+    /* Hide social icons entirely on very narrow screens by default, but
+       allow them to reappear when the menu is opened.  The grid layout
+       still reserves space for them when visible. */
+    .nav-extras {
+        grid-row: 2;
+        grid-column: 1;
+        display: none;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    .nav-extras.open-icons {
+        display: flex;
+    }
+    .nav-icon {
+        grid-row: 2;
+        grid-column: 2;
+        /* Place the hamburger to the right of the social icons */
+        margin-left: 8px;
+        display: block;
+    }
+
+    /* On very narrow screens reduce the hero's top padding even further to
+       elevate the title and buttons relative to the artist image.  A
+       60px top padding positions the text higher on small phones. */
+    #hero {
+        /* Move the hero content down by roughly half a centimeter on very
+           narrow screens.  The increased top padding provides a small
+           buffer above the text for better spacing relative to the
+           artist image. */
+        padding-top: 80px;
+    }
+}
+
+
+/*
+ * Contact page styles
+ *
+ * These rules define the layout and appearance of the contact page.  The
+ * section uses the same backdrop as the hero but centers a form and
+ * descriptive text to invite visitors to get in touch.  Inputs and
+ * select elements adopt the dark theme of the site while remaining legible.
+ */
+.contact-section {
+    /* Occupy the full viewport height while leaving space for the fixed
+       header at the top and the footer at the bottom. */
+    min-height: 100vh;
+    padding-top: 120px;
+    padding-bottom: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Reuse the concert backdrop with a darker overlay for readability */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.contact-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 0 20px;
+}
+
+.contact-section h1 {
+    font-size: 48px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.contact-section p {
+    font-size: 18px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 16px;
+}
+
+.contact-section p.contact-hours {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 24px;
+}
+
+.contact-form .input-group {
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    font-size: 14px;
+}
+
+.contact-form select option {
+    color: #000;
+}
+
+.contact-form textarea {
+    resize: vertical;
+}
+
+.contact-form .btn {
+    margin-top: 12px;
+    width: 100%;
+    text-align: center;
+}
+
+/*
+ * Footer styling
+ *
+ * The footer is fixed to the bottom of the viewport so that it overlays the
+ * background image without requiring any additional scrolling.  A small
+ * height ensures it remains unobtrusive while still displaying the
+ * copyright notice.  The semi‑transparent background provides contrast
+ * against the hero image.
+ */
+/*
+ * Footer styling
+ *
+ * The footer is fixed to the bottom of the viewport.  It contains a row of
+ * social media icons on the left and the copyright notice on the right.
+ * An increased height allows room for the icons while keeping a compact
+ * appearance.  Padding provides breathing space on the sides, and flex
+ * properties align the content.
+ */
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Shorter height for a compact footer */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    /* Center the copyright text horizontally */
+    justify-content: center;
+    padding: 0 20px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+
+/* Share button style in navigation */
+.share-btn {
+    color: #ffffff;
+    transition: color 0.2s ease;
+}
+
+.share-btn:hover {
+    color: #d4112a;
+}
+
+.share-btn i {
+    font-size: 18px;
+}
+
+/* Social icons in navigation */
+.nav-extras .social-link {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+    transition: color 0.2s ease;
+}
+
+.nav-extras .social-link:hover {
+    color: #d4112a;
+}
+
+/* Size the inline SVG used for the Kwai icon. The SVG inherits the
+   current text color via the stroke attribute, so it will match the
+   surrounding icons. */
+.kwai-link .kwai-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    /* Remova o filtro invert; o arquivo SVG já define traços brancos,
+       então o filtro faria o ícone ficar escuro. */
+    filter: none;
+}

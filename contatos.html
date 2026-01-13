@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Mc Regis</title>
+    <!-- Meta descrição para a página de contato -->
+    <meta name="description" content="Entre em contato com MC Artista para shows, composição de letras e criação de músicas.">
+    <!-- Metadados Open Graph para compartilhamento -->
+    <meta property="og:title" content="Contato | MC Artista">
+    <meta property="og:description" content="Envie sua mensagem e solicite orçamento para shows, composições ou criação de músicas.">
+    <meta property="og:image" content="https://i.ibb.co/rGbY0pGw/man.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1536">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:url" content="https://nabio.link/contatos.html">
+    <!-- Metadados Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contato | MC Artista">
+    <meta name="twitter:description" content="Entre em contato com o MC Artista para shows e composições.">
+    <meta name="twitter:image" content="https://i.ibb.co/rGbY0pGw/man.png">
+    <meta name="twitter:image:width" content="1024">
+    <meta name="twitter:image:height" content="1536">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main styles -->
+    <!-- Use the latest stylesheet version so updates (like newsletter positioning) are reflected -->
+    <link rel="stylesheet" href="style.css?v=40">
+    <!-- Font Awesome for social and share icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bloqueio de teclas F12 e clique direito para impedir acesso às ferramentas do desenvolvedor
+         Este script é carregado no <head> para garantir que os ouvintes sejam registrados antes do carregamento da página. -->
+    <script>
+      (function() {
+        function disableDevTools(e) {
+          // Bloqueia a tecla F12
+          if (e.keyCode === 123) {
+            e.preventDefault();
+          }
+          // Bloqueia combinações Ctrl+Shift+I/J/C (Ferramentas de desenvolvedor)
+          if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+            e.preventDefault();
+          }
+          // Bloqueia Ctrl+U (ver código-fonte)
+          if (e.ctrlKey && e.keyCode === 85) {
+            e.preventDefault();
+          }
+        }
+        // Bloqueia o clique direito
+        document.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+        });
+        // Bloqueia teclas e combinações
+        document.addEventListener('keydown', disableDevTools);
+      })();
+    </script>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header class="navbar">
+        <nav class="container">
+            <!-- Logo, navigation links centered, and social icons on the right -->
+            <div class="logo">MC Artista</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Vídeos</a></li>
+                <li><a href="#">Músicas</a></li>
+                <li><a href="contatos.html">Contatos</a></li>
+            </ul>
+            <div class="nav-extras">
+                <a href="#" aria-label="Spotify" class="social-link"><i class="fa-brands fa-spotify"></i></a>
+                <a href="#" aria-label="Deezer" class="social-link"><i class="fa-brands fa-deezer"></i></a>
+                <a href="#" aria-label="YouTube Music" class="social-link"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" aria-label="TikTok" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
+                <!-- Use the standard Twitter icon instead of fa-x-twitter to ensure the icon displays correctly on all devices -->
+                <a href="#" aria-label="Twitter" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+
+                <!-- Kwai icon with link (update href to your Kwai profile if available) -->
+                <a href="#" aria-label="Kwai" class="social-link kwai-link"><img src="assets/kwai.svg" alt="Kwai" class="kwai-icon"></a>
+
+                <!-- Link para contato por email -->
+                <a href="mailto:mcregis.artist@gmail.com" aria-label="Email" class="social-link"><i class="fa-solid fa-envelope"></i></a>
+
+                <a href="#" id="shareBtn" class="share-btn" aria-label="Compartilhar"><i class="fa-solid fa-share"></i></a>
+            </div>
+        <!-- Mobile menu icon (hamburger).  Visible only on small screens. -->
+        <div class="nav-icon" aria-label="Abrir menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        </nav>
+    </header>
+
+    <!-- Contact section -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <h1>Entre em Contato</h1>
+            <p>Oferecemos serviços de <strong>shows</strong>, <strong>composição de letras</strong> e <strong>criação de músicas</strong>. Preencha o formulário abaixo para solicitar um orçamento ou tirar suas dúvidas.</p>
+            <p class="contact-hours">Atendimento de domingo a domingo, das 07:00 às 12:00.</p>
+            <!--
+                The contact form posts to FormSubmit (https://formsubmit.co/) so that submissions
+                are forwarded to the specified email address without requiring a local mail client.
+                FormSubmit sends the form contents to your inbox. The first submission triggers a
+                confirmation email to verify ownership of the address. After verification, messages
+                will be delivered automatically. See https://formsubmit.co for details.
+            -->
+            <!--
+                Modify the form so that it is handled via JavaScript.  We assign
+                an id so it can be targeted in script.js, and set action="#" so
+                that the browser does not navigate away on submission.  Hidden
+                fields are removed because the AJAX handler constructs the
+                payload and triggers a redirect to obrigado.html after
+                successful submission.
+            -->
+            <form class="contact-form" id="contactForm" action="#" method="POST">
+                <div class="input-group">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Seu email" required>
+                </div>
+                <div class="input-group">
+                    <label for="servico">Serviço</label>
+                    <select id="servico" name="servico">
+                        <option value="show">Show</option>
+                        <option value="composicao">Composição de letras</option>
+                        <option value="criacao">Criação de músicas</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="mensagem">Mensagem</label>
+                    <textarea id="mensagem" name="mensagem" rows="4" placeholder="Sua mensagem"></textarea>
+                </div>
+                <button type="submit" class="btn watch">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>© 2026 Mc Regis • Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Visitor counter widget for the contact page.  It floats on the left side
+         similarly to the newsletter widget on the home page.  Clicking the
+         eye icon reveals the number of page visits fetched from CountAPI. -->
+    <div class="visitor-widget" id="visitorWidget">
+        <button type="button" class="visitor-icon" id="visitorToggle" aria-label="Mostrar número de visitas">
+            <i class="fa-solid fa-eye"></i>
+        </button>
+        <div class="visitor-count">
+            <!-- Inicia codigo Contador (novo).  Este snippet foi fornecido para
+                 exibir o contador de visitas do MegaContador.  Ele inclui um
+                 link para o site do contador e a imagem do contador (GIF).  Ao
+                 clicar, será aberto o site do MegaContador. -->
+            <div align="center"><a title='Contador de Visitas do MegaContador' href='' ><img src='https://megacontador.com.br/img-Jy0VDzCzZ9wUmaOc-36.gif' border='0' alt='Contador de visitas'></a></div>
+            <!-- Fim do código do contador -->
+        </div>
+    </div>
+
+    <!-- Append a version query to the script tag to ensure browsers load the latest JS after updates -->
+    <script src="script.js?v=7"></script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Página principal -->
+    <title>Mc Regis | Novo single disponível agora</title>
+    <!-- Descrição básica para mecanismos de busca -->
+    <meta name="description" content="Mc Regis - Novo single disponível agora. Ouça agora e assista ao clipe no site oficial.">
+    <!-- Metadados Open Graph para compartilhamento em redes sociais -->
+    <meta property="og:title" content="Mc Regis - Novo Single Disponível Agora">
+    <meta property="og:description" content="Visite o site oficial do Mc Regis e descubra o novas músicas. Ouça agora e assista ao clipe.">
+    <!-- Use path relative to the site root so that the image can be resolved by social networks -->
+    <meta property="og:image" content="https://i.ibb.co/rGbY0pGw/man.png">
+    <!-- Defina as dimensões da imagem para alguns scrapers -->
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1536">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <!-- URL canonica para esta página -->
+    <meta property="og:url" content="https://nabio.link/">
+    <!-- Metadados do Twitter (cards) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MC Regis - Novo Single Disponível Agora">
+    <meta name="twitter:description" content="Ouça o novo single do MC Regis e assista ao clipe no site oficial.">
+    <meta name="twitter:image" content="https://i.ibb.co/rGbY0pGw/man.png">
+    <!-- Algumas plataformas usam largura/altura com prefixo twitter: -->
+    <meta name="twitter:image:width" content="1024">
+    <meta name="twitter:image:height" content="1536">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main styles -->
+    <!-- Added version query to force reload after updates -->
+    <!-- Added version query to force reload after updates -->
+    <!-- Bump the version query on the stylesheet to ensure browsers refresh
+         the cached CSS after updates (e.g. repositioning the newsletter widget). -->
+    <link rel="stylesheet" href="style.css?v=40">
+    <!-- Font Awesome for social and share icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bloqueio de teclas F12 e clique direito para impedir acesso às ferramentas do desenvolvedor
+         Este script é carregado no <head> para garantir que os ouvintes sejam registrados antes do carregamento da página. -->
+    <script>
+      (function() {
+        function disableDevTools(e) {
+          // Bloqueia a tecla F12
+          if (e.keyCode === 123) {
+            e.preventDefault();
+          }
+          // Bloqueia combinações Ctrl+Shift+I/J/C (Ferramentas de desenvolvedor)
+          if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+            e.preventDefault();
+          }
+          // Bloqueia Ctrl+U (ver código-fonte)
+          if (e.ctrlKey && e.keyCode === 85) {
+            e.preventDefault();
+          }
+        }
+        // Bloqueia o clique direito
+        document.addEventListener('contextmenu', function(e) {
+          e.preventDefault();
+        });
+        // Bloqueia teclas e combinações
+        document.addEventListener('keydown', disableDevTools);
+      })();
+    </script>
+</head>
+<body>
+    <!-- Navigation bar -->
+    <header class="navbar">
+        <nav class="container">
+            <!-- Logo, navigation links centered, and social icons on the right -->
+            <div class="logo">Mc Regis</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Vídeos</a></li>
+                <li><a href="#">Músicas</a></li>
+                <li><a href="contatos.html">Contatos</a></li>
+            </ul>
+            <div class="nav-extras">
+                <a href="#" aria-label="Spotify" class="social-link"><i class="fa-brands fa-spotify"></i></a>
+                <a href="#" aria-label="Deezer" class="social-link"><i class="fa-brands fa-deezer"></i></a>
+                <a href="#" aria-label="YouTube Music" class="social-link"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#" aria-label="TikTok" class="social-link"><i class="fa-brands fa-tiktok"></i></a>
+                <!-- Use the standard Twitter icon instead of fa-x-twitter to ensure the icon displays correctly on all devices -->
+                <a href="#" aria-label="Twitter" class="social-link"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" aria-label="Instagram" class="social-link"><i class="fa-brands fa-instagram"></i></a>
+
+                <!-- Kwai icon with link (update href to your Kwai profile if available) -->
+                <a href="#" aria-label="Kwai" class="social-link kwai-link"><img src="assets/kwai.svg" alt="Kwai" class="kwai-icon"></a>
+
+                <!-- Link para contato por email -->
+                <a href="mailto:mcregis.artist@gmail.com" aria-label="Email" class="social-link"><i class="fa-solid fa-envelope"></i></a>
+
+                <a href="#" id="shareBtn" class="share-btn" aria-label="Compartilhar"><i class="fa-solid fa-share"></i></a>
+            </div>
+        <!-- Mobile menu icon (hamburger).  Visible only on small screens. -->
+        <div class="nav-icon" aria-label="Abrir menu">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+        </nav>
+    </header>
+
+    <!-- Hero section -->
+    <section id="hero">
+        <div class="hero-content">
+            <!-- Spotify player control button placed above the artist name.  The button toggles
+                 between play and pause states and uses Font Awesome icons for visual feedback.
+                 It is absolutely positioned via CSS so it appears just above the hero title. -->
+            <button class="audio-control" id="audioControl" aria-label="Reproduzir ou pausar">
+                <i class="fa-solid fa-play" id="audioIcon"></i>
+            </button>
+
+            <h1>MC Regis</h1>
+            <p>Novo single disponível agora</p>
+            <div class="cta">
+                <a href="#" class="btn listen">Ouça agora</a>
+                <a href="#" class="btn watch">Assista clipe</a>
+            </div>
+
+            <!-- Container where the Spotify iFrame API will render the embedded playlist.  The
+                 element itself is hidden because the audio is controlled externally by the
+                 play/pause button.  Without displaying the full embed UI, we maintain the
+                 minimalistic look of the hero section. -->
+            <div id="spotifyPlayer" class="spotify-player" aria-hidden="true"></div>
+        </div>
+        <div class="hero-image" aria-hidden="true">
+            <img src="assets/man.png" alt="MC Regis" />
+        </div>
+    </section>
+
+    <!--
+      Fixed footer: sits at the bottom of the viewport overlaying the background.
+      It does not push content down or cause scrolling.  The text inside
+      communicates the copyright notice.
+    -->
+    <footer class="site-footer">
+        <p>© 2026 MC Regis • Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Newsletter subscription widget.  A floating button on the left opens a small form
+         allowing visitors to submit their email address.  The form submits via
+         FormSubmit to the MC Regis email address and auto-responds with a thank-you. -->
+    <div class="newsletter-widget" id="newsletterWidget">
+        <button type="button" class="newsletter-icon" id="newsletterToggle" aria-label="Inscrever-se na newsletter">
+            <i class="fa-solid fa-envelope"></i>
+        </button>
+        <form class="newsletter-form" id="newsletterForm" action="#" method="POST">
+            <!-- Campo de e-mail.  O envio é interceptado por JavaScript para que
+                 a página não seja recarregada.  O endereço será enviado via
+                 requisição AJAX para o serviço FormSubmit. -->
+            <input type="email" name="email" placeholder="Digite seu e-mail" required>
+            <!-- Botão de envio.  O envio padrão do formulário é impedido por
+                 JavaScript, portanto não haverá redirecionamento. -->
+            <button type="submit">Inscrever-se</button>
+        </form>
+    </div>
+
+    <!-- Visitor counter widget.  A floating eye icon displays the number of page visits.
+         The widget is partially hidden by default; clicking the icon reveals the
+         current hit count fetched via the CountAPI. -->
+    <div class="visitor-widget" id="visitorWidget">
+        <button type="button" class="visitor-icon" id="visitorToggle" aria-label="Mostrar número de visitas">
+            <i class="fa-solid fa-eye"></i>
+        </button>
+        <div class="visitor-count">
+            <!-- Inicia codigo Contador (novo).  Este snippet foi fornecido para
+                 exibir o contador de visitas do MegaContador.  Ele inclui um
+                 link para o site do contador e a imagem do contador (GIF).
+                 Ao clicar, será aberto o site do MegaContador. -->
+            <div align="center"><a title='Contador de Visitas do MegaContador' href='' ><img src='https://megacontador.com.br/img-Jy0VDzCzZ9wUmaOc-36.gif' border='0' alt='Contador de visitas'></a></div>
+            <!-- Fim do código do contador -->
+        </div>
+    </div>
+    <!-- Load the main JavaScript file containing navigation and share logic -->
+    <!-- Append a version query to the script tag to ensure browsers load the latest JS after updates -->
+    <script src="script.js?v=7"></script>
+    <!-- Load the Spotify IFrame API asynchronously to embed a playlist.  This API
+         allows us to programmatically control playback (play, pause, resume). -->
+    <script src="https://open.spotify.com/embed/iframe-api/v1" async></script>
+    <script>
+        // Wait until the DOM is ready before adding event listeners or creating the player
+        document.addEventListener('DOMContentLoaded', () => {
+            const audioControlBtn = document.getElementById('audioControl');
+            const audioIcon = document.getElementById('audioIcon');
+            let spotifyController = null;
+            let isPlaying = false;
+
+            // Define a callback that will be invoked by the Spotify IFrame API when it has
+            // finished loading.  This function receives the API object (IFrameAPI) which
+            // we can use to create a new embed controller.  A random playlist URI from
+            // a predefined list is selected each time the page loads.  If browser
+            // autoplay policies permit, the music will start automatically; otherwise
+            // playback begins when the user presses the play button.
+            window.onSpotifyIframeApiReady = (IFrameAPI) => {
+                const playlists = [
+                    'spotify:playlist:37i9dQZF1DXdSzM4Tgbq7H', // Top 50 Brasil
+                    'spotify:playlist:37i9dQZF1DXcBWIGoYBM5M', // Today\'s Top Hits
+                    'spotify:playlist:37i9dQZF1DWXRqgorJj26U'  // Brazilian Funk
+                ];
+                // Pick a random playlist URI
+                const randomIndex = Math.floor(Math.random() * playlists.length);
+                const selectedUri = playlists[randomIndex];
+
+                // DOM element where the embed should be rendered
+                const playerEl = document.getElementById('spotifyPlayer');
+                if (!playerEl) return;
+
+                // Options for the embed; we provide only the URI and allow the API to choose
+                // the type of embed automatically
+                const options = {
+                    uri: selectedUri,
+                    // Set width and height to zero so the embedded player is hidden.  The API
+                    // will still load and we can control playback via the controller.  See
+                    // https://developer.spotify.com/documentation/embeds/references/iframe-api for details.
+                    width: 0,
+                    height: 0
+                };
+
+                const callback = (EmbedController) => {
+                    spotifyController = EmbedController;
+                    // Attempt autoplay once the controller is ready; this may be
+                    // blocked by autoplay policies if the user hasn't interacted
+                    // with the page yet.  The controller.play() call returns a
+                    // Promise.  If playback begins successfully we set the
+                    // playing flag and update the icon.  If the promise
+                    // rejects, autoplay was prevented and we leave the icon as
+                    // "play" until the user interacts.
+                    spotifyController.play()
+                        .then(() => {
+                            isPlaying = true;
+                            audioIcon.classList.remove('fa-play');
+                            audioIcon.classList.add('fa-pause');
+                        })
+                        .catch(() => {
+                            // Autoplay failed; show play icon for manual start
+                            isPlaying = false;
+                            audioIcon.classList.remove('fa-pause');
+                            audioIcon.classList.add('fa-play');
+                        });
+                };
+
+                // Create the Spotify embed controller
+                IFrameAPI.createController(playerEl, options, callback);
+            };
+
+            // Toggle playback when the control button is clicked
+            audioControlBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (!spotifyController) {
+                    return;
+                }
+                if (isPlaying) {
+                    // Pause playback and update icon
+                    spotifyController.pause();
+                    audioIcon.classList.remove('fa-pause');
+                    audioIcon.classList.add('fa-play');
+                    isPlaying = false;
+                } else {
+                    // Resume playback and update icon
+                    // The API\'s play() method resumes a paused session
+                    spotifyController.resume();
+                    audioIcon.classList.remove('fa-play');
+                    audioIcon.classList.add('fa-pause');
+                    isPlaying = true;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
